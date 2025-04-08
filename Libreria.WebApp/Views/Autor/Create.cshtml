@@ -1,0 +1,56 @@
+﻿@model Libreria.WebApp.Models.AltaAutorViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>AltaAutorViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+
+            <div>
+                <label>Nombre</label>
+                <input asp-for="dto.Nombre" />
+                <span asp-validation-for="dto.Nombre" class="text-danger"></span>
+            </div>
+
+
+            <div>
+                <label>Apellido</label>
+                <input asp-for="dto.Apellido" />
+                <span asp-validation-for="dto.Apellido" class="text-danger"></span>
+            </div>
+
+            <div>
+                <label>País</label>
+                <select asp-for="@Model.dto.PaisId" asp-items="Model.Paises">
+                    <option value="">Seleccione un país</option>
+
+                </select>
+
+            </div>
+
+
+
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
