@@ -2,10 +2,12 @@
 using Libreria.DTOs.DTOs.DTOsUsuario;
 using Libreria.LogicaAplicacion.ICasosUso.ICUEmpleado;
 using Libreria.LogicaAplicacion.ICasosUso.ICUUsuario;
+using Libreria.WebApp.Filtros;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApp.Controllers
 {
+    
     public class UsuarioController : Controller
     {
         private ICUAltaUsuario _CUAltaEmpleado;
@@ -19,10 +21,14 @@ namespace WebApp.Controllers
         }
         public IActionResult Index()
         {
+
             return View();
         }
 
-        public IActionResult Create() { 
+        [LogueadoAuthorize]
+        [EmpleadoAuthorize]
+        public IActionResult Create()
+        {
             return View();
         }
 
@@ -31,6 +37,9 @@ namespace WebApp.Controllers
         {
             try
             {
+                int? lid = HttpContext.Session.GetInt32("LogueadoId");
+                dto.LogueadoId = lid;
+
                 _CUAltaEmpleado.AltaEmpleado(dto);
                 ViewBag.msg = "Alta correcta";
             }
@@ -42,6 +51,10 @@ namespace WebApp.Controllers
             return View();
         }
 
+
+        public IActionResult AccesoDenegado() { 
+        return View();
+        }
 
 
         public IActionResult Login() {

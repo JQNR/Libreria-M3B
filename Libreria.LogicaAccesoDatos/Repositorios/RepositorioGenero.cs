@@ -26,10 +26,12 @@ namespace Libreria.LogicaAccesoDatos.Repositorios
             return genero.Id;
         }
 
-        public void Update(Genero genero)
+        public int Update(Genero genero)
         {
+            _context.Generos.Update(genero);
+            _context.SaveChanges();
+            return genero.Id;
 
-           throw new NotImplementedException();
         }
 
         public List<Genero> FindAll()

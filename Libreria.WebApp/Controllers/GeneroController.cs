@@ -11,11 +11,20 @@ namespace WebApp.Controllers
     {
         private ICUAltaGenero _CuAltaGenero;
         private ICUListarGeneros _CuListarGeneros;
+        private ICUObtenerGenero _CUObtenerGenero;
+        private ICUActualizarGenero _CUActualizarGenero;
+        
+        
 
-        public GeneroController(ICUAltaGenero CuAltaGenero, ICUListarGeneros CuListarGeneros)
+        public GeneroController(ICUAltaGenero CuAltaGenero, 
+            ICUListarGeneros CuListarGeneros, 
+            ICUObtenerGenero cUObtenerGenero,
+            ICUActualizarGenero CUActualizarGenero)
         {
-           _CuAltaGenero = CuAltaGenero;
-           _CuListarGeneros = CuListarGeneros;
+            _CuAltaGenero = CuAltaGenero;
+            _CuListarGeneros = CuListarGeneros;
+            _CUObtenerGenero = cUObtenerGenero;
+            _CUActualizarGenero = CUActualizarGenero;
         }
         public IActionResult Index()
         {
@@ -52,6 +61,35 @@ namespace WebApp.Controllers
                 ViewBag.msg = e.Message;
             }
 
+            return View();
+        }
+
+        public IActionResult Edit(int id) { 
+        
+             //salir a buscar el genero con este id
+             DTOGenero model = _CUObtenerGenero.ObtenerGenero(id);
+             return View(model);
+        }
+
+
+        [HttpPost]
+        public IActionResult Edit(DTOGenero dto)
+        {
+            try
+            {
+                dto.LogueadoId = HttpContext.Session.GetInt32("LogueadoId");
+                _CUActualizarGenero.ActualizarGenero(dto);
+            }
+            catch (EdadMinimaException e)
+            {
+                ViewBag.error = e.Message;
+               
+            }
+            catch (NombreGeneroException e)
+            {
+
+                ViewBag.error = e.Message;
+            }
             return View();
         }
     }

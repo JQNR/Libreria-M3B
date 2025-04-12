@@ -16,10 +16,12 @@ namespace Libreria.LogicaAplicacion.CasosUso.CUEmpleado
     public class CUAltaUsuario : ICUAltaUsuario
     {
         private IRepositorioUsuario _repoUsuario;
+        private IRepositorioAuditoria _repoAuditoria;
 
-        public CUAltaUsuario(IRepositorioUsuario repoUsuario)
+        public CUAltaUsuario(IRepositorioUsuario repoUsuario, IRepositorioAuditoria repoAuditoria)
         {
             _repoUsuario = repoUsuario;
+            _repoAuditoria = repoAuditoria;
         }
 
 
@@ -35,10 +37,17 @@ namespace Libreria.LogicaAplicacion.CasosUso.CUEmpleado
 
 
                 Usuario nuevo = MapperUsuario.ToUsuario(dto);
-                _repoUsuario.Add(nuevo);
+                int idEntidad =  _repoUsuario.Add(nuevo);
+
+                Auditoria aud = new Auditoria(dto.LogueadoId, "ALTA", nuevo.GetType().Name, idEntidad.ToString(), "Alta correcta");
+
+                _repoAuditoria.Auditar(aud);
             }
             catch (Exception e)
             {
+                Auditoria aud = new Auditoria(dto.LogueadoId, "ALTA", "Usuario", null, "ERROR: "+e.Message);
+
+                _repoAuditoria.Auditar(aud);
                 //TODO Audito el problema
                 throw e;
             }

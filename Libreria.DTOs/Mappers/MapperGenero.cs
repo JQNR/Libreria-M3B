@@ -18,6 +18,23 @@ namespace Libreria.DTOs.Mappers
             return genero;
         }
 
+        public static Genero FromDtoGeneroToGenero(DTOGenero dto)
+        {
+            Genero n = new Genero();
+            n.Nombre = dto.Nombre;
+            n.EdadMinima = dto.EdadMinima;
+            n.Id = dto.Id;
+            return n;
+        }
+
+        public static DTOGenero FromGeneroToDtoGenero(Genero b)
+        {
+            DTOGenero dto = new DTOGenero();
+            dto.Id = b.Id;
+            dto.EdadMinima = b.EdadMinima;
+            dto.Nombre = b.Nombre;
+            return dto;
+        }
 
         public static List<DTOGenero> FromListGeneroToListDtoGenero(List<Genero> generos)
         {

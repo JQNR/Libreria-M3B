@@ -32,6 +32,7 @@ namespace Libreria.LogicaNegocio.Entidades
             Email = email;
             Password = password;
             Estado = true;
+            Rol = rol;
 
             NombreCompleto.Validar();
             if (!email.Contains('@')) {

@@ -12,6 +12,6 @@ namespace Libreria.LogicaNegocio.InterfacesRepositorios
         T FindById(int id);
         void Remove(int id);
         List<T> FindAll();
-        void Update(T obj);
+        int Update(T obj);
     }
 }

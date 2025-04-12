@@ -38,7 +38,7 @@ namespace Libreria.LogicaAccesoDatos.Repositorios
             throw new NotImplementedException();
         }
 
-        public void Update(Pais obj)
+        public int Update(Pais obj)
         {
             throw new NotImplementedException();
         }

@@ -40,7 +40,7 @@ namespace Libreria.LogicaAccesoDatos.Repositorios
             throw new NotImplementedException();
         }
 
-        public void Update(Libro obj)
+        public int Update(Libro obj)
         {
             throw new NotImplementedException();
         }

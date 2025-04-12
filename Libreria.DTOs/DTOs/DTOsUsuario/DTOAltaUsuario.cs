@@ -27,5 +27,7 @@ namespace Libreria.DTOs.DTOs.DTOsUsuario
 
         public int Rol { get; set; }
 
+        public int? LogueadoId { get; set; }
+
     }
 }

@@ -35,6 +35,7 @@ namespace WebApp
             builder.Services.AddScoped<IRepositorioPais, RepositorioPais>();
             builder.Services.AddScoped<IRepositorioAutor, RepositorioAutor>();
             builder.Services.AddScoped<IRepositorioLibro, RepositorioLibro>();
+            builder.Services.AddScoped<IRepositorioAuditoria, RepositorioAuditoria>();
 
             //DI - CASOS USO
 
@@ -45,6 +46,8 @@ namespace WebApp
             builder.Services.AddScoped<ICUObtenerPaises, CUObtenerPaises>();
             builder.Services.AddScoped<ICUAltaAutor, CUAltaAutor>();
             builder.Services.AddScoped<ICULogin, CULogin>();
+            builder.Services.AddScoped<ICUObtenerGenero, CUObtenerGenero>();
+            builder.Services.AddScoped<ICUActualizarGenero, CUActualizarGenero>();
 
             builder.Services.AddSession();
 

@@ -44,10 +44,11 @@ namespace Libreria.LogicaAccesoDatos.Repositorios
 
         }
 
-        public void Update(Autor obj)
+        public int Update(Autor obj)
         {
             _context.Autores.Update(obj);
             _context.SaveChanges();
+            return obj.Id;  
                 
         }
     }

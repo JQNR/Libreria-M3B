@@ -19,5 +19,6 @@ namespace Libreria.DTOs.DTOs.DTOsGenero
 
         public int EdadMinima { get; set; }
         public bool ATP { get; set; }
+        public int? LogueadoId { get; set; }
     }
 }

@@ -45,7 +45,7 @@ namespace Libreria.LogicaAccesoDatos.Repositorios
 
         }
 
-        public void Update(Usuario obj)
+        public int Update(Usuario obj)
         {
             throw new NotImplementedException();
         }
